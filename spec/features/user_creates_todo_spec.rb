@@ -8,7 +8,6 @@ feature "User creates todo" do
     # "title" references label
     fill_in "Title", with: "Buy milk"
     click_on "Submit"
-    #expect(page).to have_css '.todos li', text: 'Buy milk'
     expect(page).to have_css '.todos li', text: 'Buy milk'
   end
 end
