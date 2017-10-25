@@ -2,7 +2,7 @@ class TodosController < ApplicationController
   before_filter :authenticate
 
   def index
-    @todos = Todo.where(email: current_email)
+    @todos = current_user.todos
   end
 
   def new
@@ -10,8 +10,13 @@ class TodosController < ApplicationController
   end
 
   def create
-    Todo.create(todo_params.merge(email: current_email))
+    current_user.todos.create(todo_params)
     redirect_to todos_path
+  end
+
+  def destroy
+    todo = Todo.where(todo_delete_params)
+    todo.destroy!
   end
 
   private
@@ -19,4 +24,9 @@ class TodosController < ApplicationController
   def todo_params
     params.require(:todo).permit(:title)
   end
+
+  def todo_delete_params
+    params.require(:todo).permit(:id)
+  end
+
 end
