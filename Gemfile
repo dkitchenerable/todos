@@ -57,6 +57,7 @@ end
 group :test do
   gem 'capybara', '~> 2.8'
   gem 'database_cleaner'
+  gem 'formulaic'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
